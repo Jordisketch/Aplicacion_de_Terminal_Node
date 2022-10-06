@@ -1,0 +1,21 @@
+const fsFyleSistem = require('fs');
+const colors = require('colors/safe')
+const crearArchivo = async(base = 5, listar, hasta) => {
+    let salida = '';
+    try {
+        for (let index = 1; index <= hasta; index++) {
+            salida += `${base} x ${index} = ${base * index}\n`;
+        }
+        fsFyleSistem.writeFileSync(`tabla-${base}.txt`, salida);
+        if(listar){
+            console.log(colors.rainbow(salida));
+        }
+        return `tabla-${base}.txt`;
+    } catch (error) {
+        throw error;
+    }
+}
+
+module.exports = {
+ crearArchivo
+}
